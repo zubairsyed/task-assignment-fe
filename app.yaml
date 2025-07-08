@@ -1,0 +1,13 @@
+runtime: nodejs20
+
+handlers:
+  # Serve all static files (e.g., JS, CSS, images)
+  - url: /(.*\..+)$
+    static_files: build/\1
+    upload: build/(.*\..+)$
+
+  # Serve index.html for all other routes (important for client-side routing)
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
+    secure: always

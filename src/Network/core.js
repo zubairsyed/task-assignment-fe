@@ -26,7 +26,7 @@ export function getAxios() {
           return Promise.reject(err.response.data);
         } else if (err.request) {
           return Promise.reject({
-            message: "No response received from the server.",
+            message: "IP temporarily blocked!",
           });
         } else {
           return Promise.reject({ message: err.message });

@@ -69,6 +69,21 @@ export const OAuth = () => {
     [contextInfo, navigate]
   );
 
+  const onClearInvalidError = useCallback(() => {
+    setSignInServerError("");
+  }, []);
+
+  const clearForm = useCallback(() => {
+    reset({
+      email_id: "",
+      password: "",
+      name: "",
+      otp: "",
+    });
+    onClearInvalidError();
+    setShowPassword(false);
+  }, [onClearInvalidError, reset]);
+
   const signUp = useCallback(
     (body = {}) => {
       axios({
@@ -78,11 +93,11 @@ export const OAuth = () => {
         data: body,
         headers: { "X-Timezone": getTimezone() },
       })
-        .then((res) => {})
+        .then((res) => {
+          alert(res?.data?.message);
+        })
         .catch((e) => {
-          setSignInServerError(
-            e?.response?.data?.message || lg.generic.genericError
-          );
+          setSignInServerError(e?.response?.data || lg.generic.genericError);
         })
         .finally(() => {
           contextInfo.hideLoader();
@@ -110,21 +125,6 @@ export const OAuth = () => {
   const togglePasswordVisibility = useCallback(() => {
     setShowPassword((prev) => !prev);
   }, []);
-
-  const onClearInvalidError = useCallback(() => {
-    setSignInServerError("");
-  }, []);
-
-  const clearForm = useCallback(() => {
-    reset({
-      email_id: "",
-      password: "",
-      name: "",
-      otp: "",
-    });
-    onClearInvalidError();
-    setShowPassword(false);
-  }, [onClearInvalidError, reset]);
 
   const onTabClick = useCallback(
     (event, newValue) => {

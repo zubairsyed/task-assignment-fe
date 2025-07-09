@@ -29,7 +29,7 @@ export const lg = {
     passForm: {
       typeText: "text",
       typePassword: "password",
-      placeholder: "Password",
+      placeholder: "Password min-length:5",
       trackingId: "password",
       requiredMsg: "Password is required",
       errorMsg: "Password must be at least 4 characters",

@@ -19,7 +19,7 @@ export const WelcomeScreen = () => {
     setLastErrorMsg("");
     for (let i = 0; i < MAX_APIS_TRIGGER; i++) {
       getAxios()
-        .post(`${defaultBaseUrl}${endpoints.test}`, {})
+        .get(`${defaultBaseUrl}${endpoints.test}`, {})
         .then((res) => {
           setSuccess((prev) => prev + 1);
         })
